@@ -1,4 +1,4 @@
-package com.example.webdevsummer12018javaserverssandiri;
+package courseapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
