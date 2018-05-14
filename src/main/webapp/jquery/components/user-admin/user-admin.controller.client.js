@@ -4,6 +4,7 @@
     var $firstNameFld, $lastNameFld, $roleFld;
     var $userRowTemplate, $tbody;
     var $editUserId;
+    var $editUser;
     var userService = new UserServiceClient();
     $(main);
 
@@ -38,6 +39,7 @@
     }
     
     function selectUser(user) {
+    	$editUser = user;
         $('#usernameFld').val(user.username);
         $('#passwordFld').val(user.password);
         $('#firstNameFld').val(user.firstName);
@@ -87,6 +89,10 @@
         $firstNameFld = $('#firstNameFld').val();
         $lastNameFld = $('#lastNameFld').val();
         $roleFld = $('#roleFld').val();
+		newUser.setEmail($editUser.email);
+		newUser.setPhone($editUser.phone);
+		newUser.setRole($editUser.role);
+		newUser.setDateOfBirth($editUser.dateOfBirth);
         var user = new User();
         user.setUsername($usernameFld);
         user.setPassword($passwordFld);

@@ -29,7 +29,7 @@
 			}
 			else 
 			{
-				alert("signup unsuccessful, http error staus:" + "res.status");
+				alert("signup unsuccessful, http error staus:" + res.status);
 
 			}});
 	}

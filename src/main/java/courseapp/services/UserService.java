@@ -6,6 +6,7 @@ import java.util.*;
 import courseapp.models.User;
 import courseapp.repositories.UserRepository;
 import courseapp.exceptions.UsernameConflictException;
+import courseapp.exceptions.InvalidLoginException;
 
 
 @RestController
@@ -39,6 +40,11 @@ public class UserService {
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
 			user.setRole(newUser.getRole());
+			user.setDateOfBirth(newUser.getDateOfBirth());
+			user.setEmail(newUser.getEmail());
+			user.setPhone(newUser.getPhone());
+			user.setRole(newUser.getRole());
+			
 			userRepository.save(user);
 			return user;
 		}
@@ -53,7 +59,7 @@ public class UserService {
 		}
 		return null;
 	}
-
+	/*
 	@GetMapping("/api/user/{username}")
 	public User findUserByUsername(@PathVariable("username") String username) {
 		Optional<User> data = userRepository.findUserByUsername(username);
@@ -61,7 +67,7 @@ public class UserService {
 			return data.get();
 		}
 		return null;
-	}
+	}*/
 
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user) {
@@ -72,6 +78,18 @@ public class UserService {
 		else 
 		{
 			return userRepository.save(user);
+		}
+	}
+
+	@PostMapping("/api/login")
+	public User login(@RequestBody User user) {
+		Optional<User> data = userRepository.findUserByCredentials(user.getUsername(),user.getPassword());
+		if(!data.isPresent()) {
+			throw new  InvalidLoginException("username :" + user.getUsername());
+		}
+		else 
+		{
+			return data.get();
 		}
 	}
 
