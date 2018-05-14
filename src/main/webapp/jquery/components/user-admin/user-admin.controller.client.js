@@ -9,7 +9,7 @@
 
     function main() {
     	$tbody = $('tbody');
-    	$userRowTemplate = $('#wbdv-template')
+    	$userRowTemplate = $('.wbdv-template')
     	$('.wbdv-create').click(createUser);
     	$('.wbdv-update').click(updateUser);
     	findAllUsers()
@@ -50,6 +50,8 @@
             .findAllUsers()
             .then(renderUsers);
     }
+    
+    
     function findUserById(event) {
     	var editBtn = $(event.currentTarget);
         var userId = editBtn
@@ -62,6 +64,8 @@
 
     	
     }
+    
+    
     function deleteUser(event) {
         var deleteBtn = $(event.currentTarget);
 
@@ -108,8 +112,7 @@
         }
     }
 
-    
-    
+   
     function renderUser(user) {
         var clone = $userRowTemplate.clone();
         clone.removeClass('wbdv-hidden')
@@ -128,7 +131,5 @@
         $tbody.append(clone);
     	
     }
-    
-
     
 })();
