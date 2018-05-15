@@ -19,10 +19,10 @@
 		.register(user).then((res) => {
 			if(res.status=200){
 				res.json().then((resUser) => { sessionStorage.setItem("userID",resUser.id);
-				alert(sessionStorage.getItem("userID")); 
+				window.location.href = '../profile/profile.template.client.html';
 				})
 				
-				window.location.href = '../profile/profile.template.client.html';
+				
 			
 			}
 			else if(res.status ==409)

@@ -8,9 +8,15 @@
 
 	function main() { 
 		$("#profile-update-btn").click(update);
+		$("#profile-logout-btn").click(navigate);
 		var id = sessionStorage.getItem("userID");
 		presentUserid = id;
 		userService.findUserById(id).then(fillForm)
+	}
+	
+	function navigate(event){
+		{	window.location.href = '../login/login.template.client.html';}
+		
 	}
 	function fillForm(user) {
 		presentUser = user
@@ -44,7 +50,7 @@
 		newUser.setRole($('#roleFld').val());
 		newUser.setDateOfBirth($('#dateOfBirthFld').val());
 		console.log(newUser)
-		userService.updateUser(presentUserid, newUser).then((res) => {
+		userService.updateProfile(newUser).then((res) => {
 			$('#alertDiv').empty();
 			$('#alertDiv').removeClass();
 			$('#alertDiv').addClass("alert alert-success alert-dismissible");

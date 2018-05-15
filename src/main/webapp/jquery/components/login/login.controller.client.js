@@ -20,11 +20,14 @@
 		user.setPassword($passwordFld);
 		userService
 		.login(user).then((res) => {
-			if(res.status=200){
+			if(res.status==200)
+			
+			{
 				res.json().then((resUser) => { sessionStorage.setItem("userID",resUser.id);
-				 })
-				
 				window.location.href = '../profile/profile.template.client.html';
+				});
+				
+				
 			
 			}
 			
