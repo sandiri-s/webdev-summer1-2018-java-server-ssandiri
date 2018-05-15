@@ -12,12 +12,21 @@
 
 		$usernameFld = $('#username').val();
 		$passwordFld = $('#password').val();
+		$verifyPasswordFld = $('#verify-password').val();
+		if($verifyPasswordFld != $passwordFld )
+			{
+			$('#alertDiv').empty();
+			$('#alertDiv').removeClass();
+			$('#alertDiv').addClass("alert alert-danger alert-dismissible");
+			$('#alertDiv').append("Passwords do not match");			
+			return;
+			}
 		var user = new User();
 		user.setUsername($usernameFld);
 		user.setPassword($passwordFld);
 		userService
 		.register(user).then((res) => {
-			if(res.status=200){
+			if(res.status==200){
 				res.json().then((resUser) => { sessionStorage.setItem("userID",resUser.id);
 				window.location.href = '../profile/profile.template.client.html';
 				})
@@ -27,12 +36,18 @@
 			}
 			else if(res.status ==409)
 			{
-				alert("The username is already taken, please choose a new username");
+				$('#alertDiv').empty();
+				$('#alertDiv').removeClass();
+				$('#alertDiv').addClass("alert alert-danger alert-dismissible");
+				$('#alertDiv').append("The username is already taken, please choose a new one");			
 
 			}
 			else 
 			{
-				alert("signup unsuccessful, http error staus:" + res.status);
+				$('#alertDiv').empty();
+				$('#alertDiv').removeClass();
+				$('#alertDiv').addClass("alert alert-danger alert-dismissible");
+				$('#alertDiv').append("signup unsuccessful, http error staus:" + res.status);		
 
 			}});
 	}

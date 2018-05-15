@@ -13,6 +13,7 @@
     }
     function login() {
 
+
 		$usernameFld = $('#username').val();
 		$passwordFld = $('#password').val();
 		var user = new User();
@@ -27,13 +28,14 @@
 				window.location.href = '../profile/profile.template.client.html';
 				});
 				
-				
-			
 			}
 			
 			else if(res.status ==401)
-			{
-				alert("Invalid Username/Password");
+			{	$('#alertDiv').empty();
+				$('#alertDiv').removeClass();
+				$('#alertDiv').addClass("alert alert-danger alert-dismissible");
+				$('#alertDiv').append("Invalid Username/password");
+					
 
 			}
 			else if(res.status !=200)
