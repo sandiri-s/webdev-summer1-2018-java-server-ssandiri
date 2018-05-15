@@ -59,15 +59,18 @@ public class UserService {
 		}
 		return null;
 	}
-	/*
-	@GetMapping("/api/user/{username}")
+	
+	
+	@GetMapping("/api/profile/{username}")
 	public User findUserByUsername(@PathVariable("username") String username) {
 		Optional<User> data = userRepository.findUserByUsername(username);
 		if(data.isPresent()) {
 			return data.get();
 		}
 		return null;
-	}*/
+	}
+	
+	
 
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user) {
