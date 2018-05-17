@@ -1,7 +1,7 @@
 (function () {
     var $usernameFld, $passwordFld;
     var $removeBtn, $editBtn, $createBtn;
-    var $firstNameFld, $lastNameFld, $roleFld;
+    var $lastNameFld, $roleFld;
     var $userRowTemplate, $tbody;
     var $editUserId;
     var $editUser;
@@ -15,7 +15,7 @@
     	$('.wbdv-update').click(updateUser);
     	findAllUsers()
     }
-    
+
     function createUser() {
         $usernameFld = $('#usernameFld').val();
         $passwordFld = $('#passwordFld').val();
@@ -37,7 +37,7 @@
         $('#lastNameFld').val('');
         $('#roleFld').val('');
     }
-    
+
     function selectUser(user) {
     	$editUser = user;
         $('#usernameFld').val(user.username);
@@ -45,15 +45,15 @@
         $('#firstNameFld').val(user.firstName);
         $('#lastNameFld').val(user.lastName);
         $('#roleFld').val(user.role);
-    } 
-    
+    }
+
     function findAllUsers() {
         userService
             .findAllUsers()
             .then(renderUsers);
     }
-    
-    
+
+
     function findUserById(event) {
     	var editBtn = $(event.currentTarget);
         var userId = editBtn
@@ -64,11 +64,14 @@
        $editUserId = userId
        userService.findUserById(userId).then(selectUser);
 
-    	
+
     }
-    
-    
+
+
     function deleteUser(event) {
+
+      if(!confirm("are you sure, you want to delete?"))
+        {return;}
         var deleteBtn = $(event.currentTarget);
 
         var userId = deleteBtn
@@ -81,7 +84,7 @@
             .deleteUser(userId)
             .then(findAllUsers);
     }
-  
+
 
     function updateUser() {
         $usernameFld = $('#usernameFld').val();
@@ -114,16 +117,16 @@
         $tbody.empty();
         for(var i=0; i<users.length; i++) {
             var user = users[i];
-            renderUser(user) 
+            renderUser(user)
         }
     }
 
-   
+
     function renderUser(user) {
         var clone = $userRowTemplate.clone();
         clone.removeClass('wbdv-hidden')
         clone.attr('id', user.id);
-        
+
         clone.find('.wbdv-remove').click(deleteUser);
         clone.find('.wbdv-edit').click(findUserById);
         clone.find('.wbdv-username')
@@ -135,7 +138,7 @@
         clone.find('.wbdv-role')
     	.html(user.role);
         $tbody.append(clone);
-    	
+
     }
-    
+
 })();

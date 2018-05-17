@@ -8,8 +8,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet"
-	href="user-admin.style.client.css" />	
-	
+	href="user-admin.style.client.css" />
+
 <link href="user-admin.style.client.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,9 +20,9 @@
 <body>
 	<div class="container">
 		<h1 id="title">User Admin</h1>
-		<table class="table">
+		<table class="table table-hover">
 			<thead>
-				<tr>
+				<tr id ="wbdv-table-heading">
 					<th>Username</th>
 					<th>Password</th>
 					<th>First Name</th>
@@ -33,14 +33,14 @@
 				<tr class="wbdv-form">
 					<td><input id="usernameFld" class="form-control"
 						placeholder="Username" /></td>
-					<td><input id="passwordFld" class="form-control"
+					<td><input id="passwordFld" type="password" class="form-control"
 						placeholder="Password" /></td>
 					<td><input id="firstNameFld" class="form-control"
 						placeholder="First Name" /></td>
 					<td><input id="lastNameFld" class="form-control"
 						placeholder="Last Name" /></td>
 					<td><select id="roleFld" class="form-control">
-							
+
 							<option value="FACULTY">Faculty</option>
 							<option value="STUDENT">Student</option>
 					</select></td>
@@ -59,7 +59,7 @@
 					<td class="wbdv-last-name"></td>
 					<td class="wbdv-role"></td>
 					<td class="wbdv-actions"><span class="float-right"> <i
-							id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i> <i
+							id="wbdv-remove" class="fa-2x fa fa-minus-circle wbdv-remove"></i> <i
 							id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
 					</span></td>
 				</tr>
