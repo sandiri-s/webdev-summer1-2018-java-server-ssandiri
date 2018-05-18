@@ -48,6 +48,8 @@
 
     function forgotPassword(){
       var useLater = prompt("enter the registered email ");
+      if(useLater===null)
+        return;
       alert("Password reset email sent to the registered email");
 
     }
