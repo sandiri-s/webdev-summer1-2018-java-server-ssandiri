@@ -1,5 +1,5 @@
 package courseapp.models;
-import static org.assertj.core.api.Assertions.allOf;
+
 
 import java.util.Date;
 import java.util.List;
