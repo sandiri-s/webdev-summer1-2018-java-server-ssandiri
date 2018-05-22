@@ -28,7 +28,7 @@ public class CourseService {
 	}
 	
 	@GetMapping("/api/course/{courseId}")
-	public Course findUserById(@PathVariable("userId") int courseId) {
+	public Course findUserById(@PathVariable("courseId") int courseId) {
 		Optional<Course> data = courseRepository.findById(courseId);
 		if(data.isPresent()) {
 			return data.get();
