@@ -1,6 +1,7 @@
 package courseapp.services;
 
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class CourseService {
 	
 	@PostMapping("/api/course")
 	public Course createCourse(@RequestBody Course course) {
+		Date presentDate = new Date();
+		course.setCreated(presentDate);
+		course.setModified(presentDate);
 		return courseRepository.save(course);
 	}
 
