@@ -1,5 +1,6 @@
 package courseapp.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +76,20 @@ public class WidgetService {
 		}
 		return null;		
 	}
+	
+	
+	@PostMapping("/api/lesson/{lessonId}/widgets")
+	public List<Widget> createWidgets(
+			@PathVariable("lessonId") int lessonId,
+			@RequestBody List<Widget> newWidgets) {
+		List<Widget> output = new ArrayList<Widget>();
+	for(Widget w : newWidgets) {
+		output.add(createWidget(lessonId,w));
+	}
+		return output;
+	}
+	
+	
 	
 	@PutMapping("/api/widget/{widgetId}")
 	public Widget updateWidget(
