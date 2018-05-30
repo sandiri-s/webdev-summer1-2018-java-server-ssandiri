@@ -82,6 +82,7 @@ public class WidgetService {
 	public List<Widget> createWidgets(
 			@PathVariable("lessonId") int lessonId,
 			@RequestBody List<Widget> newWidgets) {
+		widgetRepository.deleteWidgetsByLessonId(lessonId);
 		List<Widget> output = new ArrayList<Widget>();
 	for(Widget w : newWidgets) {
 		output.add(createWidget(lessonId,w));
