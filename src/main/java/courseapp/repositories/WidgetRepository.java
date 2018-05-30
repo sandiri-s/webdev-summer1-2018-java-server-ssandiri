@@ -11,7 +11,7 @@ import courseapp.models.Widget;
 
 public interface WidgetRepository extends CrudRepository<Widget, Integer>{
 	
-	@Query("DELETE w FROM Widget w WHERE w.lesson.id=:lessonId")
+	@Query("DELETE FROM Widget w WHERE w.lesson.id=:lessonId")
 	void deleteWidgetsByLessonId(
 		@Param("lessonId") int lessonId);
 }
