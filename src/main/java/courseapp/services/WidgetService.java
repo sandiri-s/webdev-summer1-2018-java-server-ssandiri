@@ -56,8 +56,8 @@ public class WidgetService {
 			@PathVariable("lessonId") int lessonId) {
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		if(data.isPresent()) {
-			Lesson course = data.get();
-			return course.getWidgets();
+			Lesson lesson = data.get();
+			return lesson.getWidgets();
 		}
 		return null;		
 	}
