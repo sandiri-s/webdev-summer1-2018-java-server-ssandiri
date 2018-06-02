@@ -7,10 +7,10 @@ function UserServiceClient() {
 	this.register = register;
 	this.findUserByUsername = findUserByUsername;
 	this.login = login;
-	this.url = 'http://localhost:8080/api/user';
-	this.registerUrl = 'http://localhost:8080/api/register';
-	this.loginUrl = 'http://localhost:8080/api/login';
-	this.profileUrl = 'http://localhost:8080/api/profile'
+	this.url = 'https://course-mngmnt-webdev-ssandiri.herokuapp.com/api/user';
+	this.registerUrl = 'https://course-mngmnt-webdev-ssandiri.herokuapp.com/api/register';
+	this.loginUrl = 'https://course-mngmnt-webdev-ssandiri.herokuapp.com/api/login';
+	this.profileUrl = 'https://course-mngmnt-webdev-ssandiri.herokuapp.com/api/profile'
 	this.updateProfile = updateProfile; 
 	var self = this;
 
