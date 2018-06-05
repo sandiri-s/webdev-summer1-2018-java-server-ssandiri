@@ -1,5 +1,9 @@
 package courseapp.models;
 
-public class EssayExamQuestion {
+import javax.persistence.Entity;
 
+@Entity
+public class EssayExamQuestion extends BaseExamQuestion {
+
+	
 }
