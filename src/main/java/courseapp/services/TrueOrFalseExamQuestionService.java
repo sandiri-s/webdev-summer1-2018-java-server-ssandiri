@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import courseapp.models.Exam;
+import courseapp.models.MultipleChoiceExamQuestion;
 import courseapp.models.TrueOrFalseExamQuestion;
 import courseapp.repositories.TrueOrFalseExamQuestionRepository;
 import courseapp.repositories.ExamRepository;
@@ -60,6 +62,21 @@ public class TrueOrFalseExamQuestionService {
 					.collect(Collectors.toList());
 		}
 		return null;		
+	}
+	
+	@PutMapping("/api/truefalse/{truefalseId}")
+	public TrueOrFalseExamQuestion updateTFQuestion(@PathVariable("truefalseId") int truefalseId, @RequestBody TrueOrFalseExamQuestion newTrueFalseQuestion) {
+		Optional<TrueOrFalseExamQuestion> data = trueRepo.findById(truefalseId);
+		if(data.isPresent()) {
+			TrueOrFalseExamQuestion question = data.get();
+			question.setTitle(newTrueFalseQuestion.getTitle());
+			question.setDescription(newTrueFalseQuestion.getDescription());
+			question.setPoints(newTrueFalseQuestion.getPoints());
+			question.setIsTrue(newTrueFalseQuestion.getIsTrue());
+			trueRepo.save(question);
+			return question;
+		}
+		return null;
 	}
 	
 

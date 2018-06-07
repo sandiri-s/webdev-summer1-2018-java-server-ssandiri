@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import courseapp.models.EssayExamQuestion;
 import courseapp.models.Exam;
 import courseapp.models.FillInTheBlanksExamQuestion;
 import courseapp.repositories.FillInTheBlanksExamQuestionRepository;
@@ -44,6 +46,20 @@ public class FillInTheBlanksExamQuestionService {
 		return null;		
 	}
 	
+	@PutMapping("/api/blanks/{blanksId}")
+	public FillInTheBlanksExamQuestion updateFIBQuestion(@PathVariable("blanksId") int blanksId, @RequestBody FillInTheBlanksExamQuestion newFIBQuestion) {
+		Optional<FillInTheBlanksExamQuestion> data = fIBRepo.findById(blanksId);
+		if(data.isPresent()) {
+			FillInTheBlanksExamQuestion question = data.get();
+			question.setTitle(newFIBQuestion.getTitle());
+			question.setDescription(newFIBQuestion.getDescription());
+			question.setPoints(newFIBQuestion.getPoints());
+			question.setVariables(newFIBQuestion.getVariables());
+			fIBRepo.save(question);
+			return question;
+		}
+		return null;
+	}
 	
 
 	@GetMapping("/api/exam/{examId}/blanks")

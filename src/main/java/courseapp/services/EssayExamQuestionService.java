@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import courseapp.models.Exam;
 import courseapp.models.MultipleChoiceExamQuestion;
+import courseapp.models.Assignment;
 import courseapp.models.EssayExamQuestion;
 import courseapp.repositories.EssayExamQuestionRepository;
 import courseapp.repositories.ExamRepository;
@@ -45,7 +47,19 @@ public class EssayExamQuestionService {
 		return null;		
 	}
 	
-	
+	@PutMapping("/api/essay/{essayId}")
+	public EssayExamQuestion updateEssayQuestion(@PathVariable("essayId") int essayId, @RequestBody EssayExamQuestion newEssayExamQuestion) {
+		Optional<EssayExamQuestion> data = essayRepo.findById(essayId);
+		if(data.isPresent()) {
+			EssayExamQuestion question = data.get();
+			question.setTitle(newEssayExamQuestion.getTitle());
+			question.setDescription(newEssayExamQuestion.getDescription());
+			question.setPoints(newEssayExamQuestion.getPoints());
+			essayRepo.save(question);
+			return question;
+		}
+		return null;
+	}
 
 	@GetMapping("/api/exam/{examId}/essay")
 	public List<EssayExamQuestion> findAllEssayQuestionsForExam(

@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import courseapp.models.Lesson;
+import courseapp.models.User;
 import courseapp.models.Assignment;
 import courseapp.repositories.LessonRepository;
 import courseapp.repositories.AssignmentRepository;
@@ -41,6 +43,20 @@ public class AssignmentService {
 
 		}
 		return null;		
+	}
+	
+	@PutMapping("/api/assignment/{assignmentId}")
+	public Assignment updateAssignment(@PathVariable("assignmentId") int assignmentId, @RequestBody Assignment newAssignment) {
+		Optional<Assignment> data = assignmentRepository.findById(assignmentId);
+		if(data.isPresent()) {
+			Assignment assignment = data.get();
+			assignment.setTitle(newAssignment.getTitle());
+			assignment.setDescription(newAssignment.getDescription());
+			assignment.setPoints(newAssignment.getPoints());
+			assignmentRepository.save(assignment);
+			return assignment;
+		}
+		return null;
 	}
 	
 	@GetMapping("/api/lesson/{lessonId}/assignment")
