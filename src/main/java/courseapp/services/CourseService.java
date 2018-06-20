@@ -1,7 +1,9 @@
 package courseapp.services;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,17 @@ public class CourseService {
 	@DeleteMapping("/api/course/{courseId}")
 	public void deleteCourse(@PathVariable("courseId") int id) {
 		courseRepository.deleteById(id);
+	}
+	
+	@GetMapping("/api/course/public")
+	public Iterable<Course> findPublicCourses() {
+		List<Course> courses = (List<Course>) courseRepository.findAll();
+		List<Course> publicCourses = new ArrayList<Course>();
+		for (Course course: courses) {
+			if (course.getCourseType() == "public") {
+				publicCourses.add(course);
+			}
+		}
+		return publicCourses;
 	}
 }

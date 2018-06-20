@@ -24,6 +24,7 @@ public class Course {
 	private Date modified;
 	@OneToMany(mappedBy="course", orphanRemoval=true)
 	private List<Module> modules;
+	private String courseType = "public";
 	public int getId() {
 		return id;
 	}
@@ -53,5 +54,11 @@ public class Course {
 	}
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
+	}
+	public String getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
 	}
 }
